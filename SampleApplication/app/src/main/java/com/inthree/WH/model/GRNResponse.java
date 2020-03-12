@@ -7,9 +7,15 @@ import java.util.List;
 
 public class GRNResponse {
 
+    @SerializedName("message")
+    @Expose
+    String api_message;
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("grn_details")
+    @Expose
+    private GRNResponse.GRN_details grn_details;
 
     public String getStatus() {
         return status;
@@ -22,14 +28,6 @@ public class GRNResponse {
     public void setApi_message(String api_message) {
         this.api_message = api_message;
     }
-
-    @SerializedName("message")
-    @Expose
-    String api_message;
-
-    @SerializedName("grn_details")
-    @Expose
-    private GRNResponse.GRN_details grn_details;
 
     public GRN_details getGrn_details() {
         return grn_details;
@@ -50,6 +48,12 @@ public class GRNResponse {
         @SerializedName("inv_tax")
         @Expose
         String inv_tax;
+        @SerializedName("supplier_name")
+        @Expose
+        String supplier_name;
+        @SerializedName("products")
+        @Expose
+        private List<GRNResponse.ProductModel> productmodel;
 
         public String getSupplier_name() {
             return supplier_name;
@@ -58,10 +62,6 @@ public class GRNResponse {
         public void setSupplier_name(String supplier_name) {
             this.supplier_name = supplier_name;
         }
-
-        @SerializedName("supplier_name")
-        @Expose
-        String supplier_name;
 
         public String getInvoice_amount() {
             return invoice_amount;
@@ -95,13 +95,8 @@ public class GRNResponse {
             this.productmodel = productmodel;
         }
 
-        @SerializedName("products")
-        @Expose
-        private List<GRNResponse.ProductModel> productmodel;
-
 
     }
-
 
     public class ProductModel {
         @SerializedName("product_id")
@@ -131,6 +126,21 @@ public class GRNResponse {
         @SerializedName("warehouse_name")
         @Expose
         String warehouse_name;
+        @SerializedName("recevied_qty")
+        @Expose
+        int recevied_qty;
+
+        public String getBarcode_value() {
+            return barcode_value;
+        }
+
+        public void setBarcode_value(String barcode_value) {
+            this.barcode_value = barcode_value;
+        }
+
+        @SerializedName("Barcodevalue")
+        @Expose
+        String barcode_value;
 
         public int getRecevied_qty() {
             return recevied_qty;
@@ -139,10 +149,6 @@ public class GRNResponse {
         public void setRecevied_qty(int recevied_qty) {
             this.recevied_qty = recevied_qty;
         }
-
-        @SerializedName("recevied_qty")
-        @Expose
-        int recevied_qty;
 
         public String getProduct_id() {
             return product_id;

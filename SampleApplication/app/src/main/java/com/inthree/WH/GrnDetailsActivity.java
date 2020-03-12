@@ -2,7 +2,6 @@ package com.inthree.WH;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Application;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,7 +24,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.TextViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,7 +31,6 @@ import com.inthree.WH.API.Api;
 import com.inthree.WH.Adapter.GrnRecycleListAdapter;
 import com.inthree.WH.model.GRNResponse;
 import com.inthree.WH.model.GrnRequest;
-import com.inthree.WH.model.PoOrderResponse;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -41,23 +38,18 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.SimpleTimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnTextChanged;
 import me.ydcool.lib.qrmodule.activity.QrScannerActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -66,7 +58,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GrnDetailsActivity extends AppCompatActivity {
-
 
     @BindView(R.id.merchant_name)
     TextView merchant_name;
@@ -85,7 +76,6 @@ public class GrnDetailsActivity extends AppCompatActivity {
     @BindView(R.id.po_order_date)
     TextView po_order_date_;
 
-
     @BindView(R.id.invoice_date)
     Button invoice_date;
     Context context;
@@ -100,7 +90,6 @@ public class GrnDetailsActivity extends AppCompatActivity {
     Button btn_submit;
 
     GrnRecycleListAdapter recyclerViewAdapter;
-    private DatePicker datePicker;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_QTY = 2;
     RecyclerView grn_list_view;
@@ -117,33 +106,61 @@ public class GrnDetailsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.grn_details_view);
-        initComponents();
         ButterKnife.bind(this);
+        initComponents();
         hideKeyboard();
+        read_grn_details();
+
+    }
+
+    private Boolean validateGSTNumber(String s) {
+
+        if (s.length() == 15) {
+            if (s.toString().equals(VendorGSTno)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @OnClick({R.id.submit})
+    void Submitaction() {
+
+        System.out.println("qr_cod_");
+        System.out.println("qr_cod_ lisst" + qr_code_list.size());
+        System.out.println("VAUES");
+    }
+
+
+    private void initComponents() {
+        //  Initialize Components
         calendar = Calendar.getInstance();
-        grn_list_view = findViewById(R.id.grn_list);
-        recyclerViewAdapter = new GrnRecycleListAdapter();
-        grn_list_view.setLayoutManager(new LinearLayoutManager(this));
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
+        grn_list_view = findViewById(R.id.grn_list);
+        recyclerViewAdapter = new GrnRecycleListAdapter();
+        grn_list_view.setLayoutManager(new LinearLayoutManager(this));
         grn_list_view.setAdapter(recyclerViewAdapter);
+
         recyclerViewAdapter.setOnScannerClick(new GrnRecycleListAdapter.onScannerClick() {
             @Override
             public void onClick(String product_id) {
 
-                Boolean is_valid = validateGSTNumber(GSTN_number.getText().toString());
-                if(is_valid) {
+                Boolean is_valid = true;
+                        //validateGSTNumber(GSTN_number.getText().toString());
+                if (is_valid) {
                     Intent intent = new Intent(getApplicationContext(), QrScannerActivity.class);
                     intent.putExtra("product_id", product_id);
                     Selected_product_id = Integer.parseInt(product_id);
                     setResult(REQUEST_QTY, intent);
                     startActivityForResult(intent, REQUEST_QTY);
-                }
-                else{
+                } else {
                     Toast.makeText(GrnDetailsActivity.this, "Enter Valid GSTN No", Toast.LENGTH_LONG).show();
-                    //GSTN_number.setText("");
                 }
             }
         });
@@ -175,15 +192,12 @@ public class GrnDetailsActivity extends AppCompatActivity {
                     Date order_date_val = format.parse(dtStart);
                     datePickerDialog.getDatePicker().setMinDate(order_date_val.getTime());
                     datePickerDialog.getDatePicker().setMaxDate(new Date().getTime());
-                   // System.out.println("date of  is " + order_date_val.getDate() + "Month:" + order_date_val.getMonth() + "Year:" + order_date_val.getYear());
-
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 datePickerDialog.show();
             }
         });
-
 
         invoice_attachment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,59 +240,17 @@ public class GrnDetailsActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
                 Boolean is_valid = validateGSTNumber(GSTN_number.getText().toString());
-                if(s.length()>0) {
+                if (s.length() > 0) {
                     if (is_valid) {
                         GSTVerifyIcon.setVisibility(View.VISIBLE);
                     } else {
                         Toast.makeText(GrnDetailsActivity.this, "Enter Valid GSTN No", Toast.LENGTH_LONG).show();
-                       // GSTN_number.setText("");
+                        // GSTN_number.setText("");
                         GSTVerifyIcon.setVisibility(View.GONE);
                     }
                 }
-
-//                if (s.length() == 15) {
-//                    hideKeyboard();
-//                    if (s.toString().equals(VendorGSTno)) {
-//                        GSTVerifyIcon.setVisibility(View.VISIBLE);
-//                    } else {
-//                        Toast.makeText(GrnDetailsActivity.this, "Enter Valid GSTN No", Toast.LENGTH_LONG).show();
-//                        GSTN_number.setText("");
-//                    }
-//                } else
-//                    GSTVerifyIcon.setVisibility(View.GONE);
             }
         });
-
-
-        read_grn_details();
-
-    }
-
-    private Boolean validateGSTNumber(String s) {
-
-        if (s.length() == 15) {
-            if (s.toString().equals(VendorGSTno)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        else{
-            return false;
-        }
-    }
-
-    @OnClick({R.id.submit})
-    void Submitaction() {
-
-        System.out.println("qr_cod_");
-        System.out.println("qr_cod_ lisst" + qr_code_list.size());
-        System.out.println("VAUES");
-    }
-
-
-    private void initComponents() {
-
     }
 
     @Override
@@ -316,17 +288,15 @@ public class GrnDetailsActivity extends AppCompatActivity {
                             if (Product_list.get(i).getRecevied_qty() <= qr_code_list.get(Selected_product_id).size()) {
                                 int total_qty = (qr_code_list.get(Selected_product_id).size());
                                 Product_list.get(i).setRecevied_qty(total_qty);
+                                Product_list.get(i).setBarcode_value(scanResult);
                                 break;
                             } else {
-                                Toast.makeText(getApplicationContext(), "You cannot Scan ore than Ordered qty!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "You cannot Scan more than Ordered qty!", Toast.LENGTH_LONG).show();
                             }
 
                         }
                     }
-//                    recyclerViewAdapter = new GrnRecycleListAdapter();
-//                    grn_list_view.setAdapter(recyclerViewAdapter);
                     recyclerViewAdapter.setData(Product_list);
-                   // recyclerViewAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -335,6 +305,7 @@ public class GrnDetailsActivity extends AppCompatActivity {
     }
 
     public void read_grn_details() {
+        // Call the API and load the details view of PO order
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api.BoonBox_URL)
                 .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object

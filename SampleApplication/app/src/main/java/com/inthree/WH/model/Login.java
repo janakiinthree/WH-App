@@ -17,9 +17,7 @@ public class Login {
     }
 
 
-
-
-    public static class Data{
+    public static class Data {
 
         @SerializedName("uname")
         String user_name;

@@ -26,11 +26,36 @@ public class PoOrderRecycleListAdapter extends RecyclerView.Adapter<PoOrderRecyc
     List<PoOrderResponse.PoOrderModel> order_list_records;
     List<PoOrderResponse.PoOrderModel> order_list_recordswithfilter;
     Context context;
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<PoOrderResponse.PoOrderModel> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(order_list_records);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (PoOrderResponse.PoOrderModel item : order_list_records) {
+                    if (item.getSupplier_name().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
 
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            order_list_recordswithfilter.clear();
+            order_list_recordswithfilter.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public PoOrderRecycleListAdapter(List<PoOrderResponse.PoOrderModel> order_list) {
         order_list_records = order_list;
-        order_list_recordswithfilter =order_list;
+        order_list_recordswithfilter = order_list;
     }
 
     public PoOrderRecycleListAdapter() {
@@ -52,7 +77,7 @@ public class PoOrderRecycleListAdapter extends RecyclerView.Adapter<PoOrderRecyc
         PoOrderResponse.PoOrderModel pomdel = order_list_records.get(position);
         holder.order_number.setText((pomdel.getOrder_number() == null) ? "" : pomdel.getOrder_number());
         holder.vendor_name.setText((pomdel.getSupplier_name() == null) ? "" : pomdel.getSupplier_name());
-        holder.order_amount.setText((pomdel.getOrder_amount() == null) ? "" : "Rs"+pomdel.getOrder_amount());
+        holder.order_amount.setText((pomdel.getOrder_amount() == null) ? "" : "₹  " + pomdel.getOrder_amount());
         holder.order_date.setText((pomdel.getOrder_created_date() == null) ? "" : pomdel.getOrder_created_date());
     }
 
@@ -62,7 +87,7 @@ public class PoOrderRecycleListAdapter extends RecyclerView.Adapter<PoOrderRecyc
     }
 
     public void setData(List<PoOrderResponse.PoOrderModel> data) {
-        this.order_list_records.addAll(data);
+        this.order_list_records = data;
         this.order_list_recordswithfilter = data;
         notifyDataSetChanged();
     }
@@ -72,35 +97,9 @@ public class PoOrderRecycleListAdapter extends RecyclerView.Adapter<PoOrderRecyc
         return exampleFilter;
     }
 
-    private Filter exampleFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<PoOrderResponse.PoOrderModel> filteredList= new ArrayList<>();
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(order_list_records);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-                for (PoOrderResponse.PoOrderModel item : order_list_records) {
-                    if (item.getSupplier_name().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(item);
-                    }
-                }
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-            return results;
-        }
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            order_list_recordswithfilter.clear();
-            order_list_recordswithfilter.addAll((List) results.values);
-            notifyDataSetChanged();
-        }
-    };
-
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView order_number,vendor_name,order_amount,order_date;
+        public TextView order_number, vendor_name, order_amount, order_date;
         public CardView cardView;
 
         public ViewHolder(View view) {
@@ -123,10 +122,9 @@ public class PoOrderRecycleListAdapter extends RecyclerView.Adapter<PoOrderRecyc
 
                     // Launching new Activity on selecting single List Item
                     Intent i = new Intent(view.getContext(), GrnDetailsActivity.class);
-                    i.putExtra("order_number",order_number.getText().toString());
-                    i.putExtra("order_date",order_date.getText().toString());
+                    i.putExtra("order_number", order_number.getText().toString());
+                    i.putExtra("order_date", order_date.getText().toString());
                     context.startActivity(i);
-
 
 
                 }

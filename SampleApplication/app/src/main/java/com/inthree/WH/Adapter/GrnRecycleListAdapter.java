@@ -45,6 +45,8 @@ public class GrnRecycleListAdapter extends RecyclerView.Adapter<GrnRecycleListAd
         holder.item_code.setText((pomdel.getProduct_sku() == null) ? "" : pomdel.getProduct_sku());
         holder.ordered_qty.setText((pomdel.getQty() == null) ? "" : pomdel.getQty());
         holder.received_qty.setText(String.valueOf(pomdel.getRecevied_qty()));
+        holder.barcodevalue.setText((pomdel.getBarcode_value() == null) ? "" : pomdel.getBarcode_value());
+
         holder.qrcode_recevied_cqty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +69,7 @@ public class GrnRecycleListAdapter extends RecyclerView.Adapter<GrnRecycleListAd
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView product_name, item_code, ordered_qty;
+        public TextView product_name, item_code, ordered_qty,barcodevalue;
         EditText received_qty;
         public ImageView qrcode_recevied_cqty;
 
@@ -78,6 +80,7 @@ public class GrnRecycleListAdapter extends RecyclerView.Adapter<GrnRecycleListAd
             ordered_qty = (TextView) view.findViewById(R.id.ordered_qty);
             received_qty = (EditText) view.findViewById(R.id.entered_qty);
             qrcode_recevied_cqty = (ImageView) view.findViewById(R.id.qrcode_recevied_cqty);
+            barcodevalue = (TextView)view.findViewById(R.id.barcodevalue);
 
         }
     }
