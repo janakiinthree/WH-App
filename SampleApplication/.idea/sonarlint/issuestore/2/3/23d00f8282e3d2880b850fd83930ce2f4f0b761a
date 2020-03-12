@@ -1,0 +1,11 @@
+
+lsquid:MaximumInheritanceDepth""<This class has 6 parents which is greater than 5 authorized.(ˆ ÿ†8Åû¿þ-
+Fsquid:S1659%"#Declare "month" on a separate line.(Ìž›¢ÿÿÿÿÿ8Åû¿þ-
+xsquid:S1450("ZRemove the "mSearchView" field and declare it as a local variable in the relevant methods.(ß²ú8ÏëŽÀþ-
+Ÿsquid:S1186]"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(­›ÂÀ8Åû¿þ-
+¤squid:S1186b"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×éÐ üÿÿÿÿ8Åû¿þ-
+tsquid:S1450$"WRemove the "calendar" field and declare it as a local variable in the relevant methods.(½™ÿf8á«˜Àþ-
+Dsquid:S1659%"!Declare "day" on a separate line.(Ìž›¢ÿÿÿÿÿ8Åû¿þ-
+[squid:UselessImportCheck	"0Remove this unused import 'android.media.Image'.(ëïøÂ8Åû¿þ-
+Rsquid:S1066V"/Merge this if statement with the enclosing one.(ÃõÀÔùÿÿÿÿ8Ä…ÿ¿þ-
+Lsquid:S1068#".Remove this unused "datePicker" private field.(Ï÷Î¿8Åû¿þ-
