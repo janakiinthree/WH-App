@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.icu.text.SimpleDateFormat;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -27,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.inthree.WH.API.Api;
 import com.inthree.WH.Adapter.GrnRecycleListAdapter;
 import com.inthree.WH.model.GRNResponse;
@@ -101,6 +103,8 @@ public class GrnDetailsActivity extends AppCompatActivity {
     String VendorGSTno = "";
     Integer Selected_product_id;
     List<GRNResponse.ProductModel> Product_list;
+    Uri invoice_image_path=null;
+    GRNResponse.GRN_details grnResponse;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,6 +124,7 @@ public class GrnDetailsActivity extends AppCompatActivity {
                 return true;
             } else {
                 return false;
+
             }
         } else {
             return false;
@@ -132,6 +137,65 @@ public class GrnDetailsActivity extends AppCompatActivity {
         System.out.println("qr_cod_");
         System.out.println("qr_cod_ lisst" + qr_code_list.size());
         System.out.println("VAUES");
+        String filePath  = getFilePath(invoice_image_path);
+       // if(Product_list
+        if(grnResponse!=null)
+        {
+            //System.out.println("GGG"+grnResponse.toString());
+            grnResponse.setInvoice_number(invoice_number.getText().toString());
+            grnResponse.setInv_date(invoice_date.getText().toString());
+
+        }
+
+        Gson gson = new Gson();
+
+        String json = gson.toJson(grnResponse);
+        System.out.println("JOSN::"+json);
+
+    }
+
+    String getFilePath(Uri selectedImage) {
+        if (selectedImage == null) {
+            return null;
+        }
+
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        android.database.Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+        if (cursor == null) {
+            return null;
+        }
+        String file_path =null;
+
+        boolean moveToFirst = cursor.moveToFirst();
+        if(moveToFirst)
+        {
+
+            // Get columns name by uri type.
+            String columnName = MediaStore.Images.Media.DATA;
+
+            if( selectedImage==MediaStore.Images.Media.EXTERNAL_CONTENT_URI )
+            {
+                columnName = MediaStore.Images.Media.DATA;
+            }else if( selectedImage==MediaStore.Audio.Media.EXTERNAL_CONTENT_URI )
+            {
+                columnName = MediaStore.Audio.Media.DATA;
+            }else if( selectedImage==MediaStore.Video.Media.EXTERNAL_CONTENT_URI )
+            {
+                columnName = MediaStore.Video.Media.DATA;
+            }
+
+            // Get column index.
+            int imageColumnIndex = cursor.getColumnIndex(columnName);
+
+            // Get column value which is the uri related file local path.
+            // Get column index.
+
+            // Get column value which is the uri related file local path.
+            file_path = cursor.getString(imageColumnIndex);
+
+        }
+
+       return file_path;
     }
 
 
@@ -253,13 +317,16 @@ public class GrnDetailsActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
+            invoice_image_path = data.getData();
             invoice_attachment.setImageBitmap(photo);
             invoice_attachment.setBackground(null);
+
         }
 
         if (requestCode == REQUEST_QTY) {
@@ -320,9 +387,10 @@ public class GrnDetailsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<GRNResponse> call, Response<GRNResponse> response) {
                 String response_status = response.body().getStatus();
+
                 response.body().getGrn_details().getProductmodel();
                 if (response_status.equals("success")) {
-                    GRNResponse.GRN_details grnResponse = new GRNResponse.GRN_details();
+                    grnResponse = new GRNResponse.GRN_details();
                     grnResponse = response.body().getGrn_details();
                     // GSTN_number.setText((grnResponse.getVendor_gstinno() == null) ? " " : grnResponse.getVendor_gstinno());
                     VendorGSTno = (grnResponse.getVendor_gstinno() == null) ? "18AABCT3518Q1ZV" : grnResponse.getVendor_gstinno();

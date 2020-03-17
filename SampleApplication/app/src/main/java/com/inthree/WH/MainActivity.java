@@ -96,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void get_path(){
+
+    }
+
     private void hideKeyboard() {
         View view = this.getCurrentFocus();
         if (view != null) {

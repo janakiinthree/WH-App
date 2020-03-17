@@ -59,7 +59,7 @@ public class GrnRecycleListAdapter extends RecyclerView.Adapter<GrnRecycleListAd
     }
     @Override
     public int getItemCount() {
-        return product_list_records.size();
+        return this.product_list_records.size();
     }
 
     public void setData(List<GRNResponse.ProductModel> data) {

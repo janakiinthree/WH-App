@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import retrofit2.SkipCallbackExecutor;
+
 public class GRNResponse {
 
     @SerializedName("message")
@@ -38,6 +40,17 @@ public class GRNResponse {
     }
 
     public static class GRN_details {
+        public String getInv_date() {
+            return inv_date;
+        }
+
+        public void setInv_date(String inv_date) {
+            this.inv_date = inv_date;
+        }
+
+        @SerializedName("inv_date")
+        @Expose
+        String inv_date;
         @SerializedName("inv_amount")
         @Expose
         String invoice_amount;
@@ -54,6 +67,18 @@ public class GRNResponse {
         @SerializedName("products")
         @Expose
         private List<GRNResponse.ProductModel> productmodel;
+
+        public String getInvoice_number() {
+            return invoice_number;
+        }
+
+        public void setInvoice_number(String invoice_number) {
+            this.invoice_number = invoice_number;
+        }
+
+        @SerializedName("invoice_number")
+        @Expose
+        String invoice_number;
 
         public String getSupplier_name() {
             return supplier_name;
