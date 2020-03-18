@@ -180,18 +180,6 @@
             >
         </TextView>
 
-        <!--        <TextView-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_weight="1"-->
-        <!--            android:layout_marginTop="15dp"-->
-        <!--            android:textColor="#000000"-->
-        <!--            android:text="300"-->
-        <!--            android:id="@+id/ordered_qty"-->
-        <!--            android:textSize="15sp"-->
-        <!--            >-->
-        <!--        </TextView>-->
-
         <TextView
             android:id="@+id/barcodevalue"
             android:layout_width="match_parent"
@@ -203,6 +191,7 @@
             android:hint="Enter quantity"
             android:inputType="number"
             android:text=""
+            android:visibility="gone"
             android:textColor="#000000"
             android:textSize="15sp"></TextView>
 

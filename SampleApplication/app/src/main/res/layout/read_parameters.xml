@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginBottom="16dp"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginRight="23dp"
+        android:id="@+id/scan_bbid_layout"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="BBID"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            >
+        </TextView>
+
+        <EditText
+            android:id="@+id/bbid_number_scan_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle"
+            android:hint="Enter qty"
+            android:inputType="number"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="15sp"></EditText>
+
+        <ImageView
+            android:id="@+id/bbid_number_scan"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_qrcode"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginRight="23dp"
+        android:id="@+id/scan_imei_layout"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="IMEI "
+            android:layout_weight="1"
+            android:textSize="15sp"
+            >
+        </TextView>
+
+        <EditText
+            android:id="@+id/imei_scan_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle"
+            android:hint="Enter qty"
+            android:inputType="number"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="15sp"></EditText>
+
+        <ImageView
+            android:id="@+id/imei_scan"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_qrcode"
+
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginRight="23dp"
+        android:id="@+id/scan_serial_layout"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="Serial number"
+            android:layout_weight="1"
+            android:textSize="15sp"
+
+            >
+        </TextView>
+
+        <EditText
+            android:id="@+id/serial_number_scan_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle"
+            android:hint="Enter quantity"
+            android:inputType="number"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="15sp"></EditText>
+
+        <ImageView
+            android:id="@+id/serial_number_scan"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_qrcode"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="23dp"
+
+        >
+
+        <Button
+            android:id="@+id/update"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="130dp"
+            android:background="@drawable/button_round"
+            android:text="Ok"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp">
+
+        </Button>
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/button_round"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"></Button>
+
+
+    </LinearLayout>
+
+</LinearLayout>

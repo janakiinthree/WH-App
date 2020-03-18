@@ -140,19 +140,19 @@ public class GrnDetailsActivity2 extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        recyclerViewAdapter.setOnScannerClick(new GrnRecycleListAdapter.onScannerClick() {
-            @Override
-            public void onClick(String product_id) {
-                Intent intent = new Intent(getApplicationContext(), QrScannerActivity.class);
-                intent.putExtra("product_id", product_id);
-                Selected_product_id = Integer.parseInt(product_id);
-                setResult(REQUEST_QTY, intent);
-                startActivityForResult(intent, REQUEST_QTY);
-            }
-
-
-        });
+//
+//        recyclerViewAdapter.setOnScannerClick(new GrnRecycleListAdapter.onScannerClick() {
+//            @Override
+//            public void onClick(String product_id) {
+//                Intent intent = new Intent(getApplicationContext(), QrScannerActivity.class);
+//                intent.putExtra("product_id", product_id);
+//                Selected_product_id = Integer.parseInt(product_id);
+//                setResult(REQUEST_QTY, intent);
+//                startActivityForResult(intent, REQUEST_QTY);
+//            }
+//
+//
+//        });
 
         Intent i = getIntent();
         order_number = i.getSerializableExtra("order_number").toString();

@@ -40,21 +40,12 @@ public class GRNResponse {
     }
 
     public static class GRN_details {
-        public String getInv_date() {
-            return inv_date;
-        }
-
-        public void setInv_date(String inv_date) {
-            this.inv_date = inv_date;
-        }
-
         @SerializedName("inv_date")
         @Expose
         String inv_date;
         @SerializedName("inv_amount")
         @Expose
         String invoice_amount;
-
         @SerializedName("vendor_gstinno")
         @Expose
         String vendor_gstinno;
@@ -64,9 +55,20 @@ public class GRNResponse {
         @SerializedName("supplier_name")
         @Expose
         String supplier_name;
+        @SerializedName("invoice_number")
+        @Expose
+        String invoice_number;
         @SerializedName("products")
         @Expose
         private List<GRNResponse.ProductModel> productmodel;
+
+        public String getInv_date() {
+            return inv_date;
+        }
+
+        public void setInv_date(String inv_date) {
+            this.inv_date = inv_date;
+        }
 
         public String getInvoice_number() {
             return invoice_number;
@@ -75,10 +77,6 @@ public class GRNResponse {
         public void setInvoice_number(String invoice_number) {
             this.invoice_number = invoice_number;
         }
-
-        @SerializedName("invoice_number")
-        @Expose
-        String invoice_number;
 
         public String getSupplier_name() {
             return supplier_name;
@@ -113,6 +111,7 @@ public class GRNResponse {
         }
 
         public List<ProductModel> getProductmodel() {
+
             return productmodel;
         }
 
@@ -154,6 +153,80 @@ public class GRNResponse {
         @SerializedName("recevied_qty")
         @Expose
         int recevied_qty;
+        @SerializedName("Barcodevalue")
+        @Expose
+        String barcode_value;
+        @SerializedName("capture_bbid")
+        @Expose
+        boolean capture_bbid;
+        @SerializedName("capture_serial_no")
+        @Expose
+        boolean capture_serial_no;
+        @SerializedName("capture_imei")
+        @Expose
+        boolean capture_imei;
+
+        public boolean isDisplay_scanner() {
+            return display_scanner;
+        }
+
+        public void setDisplay_scanner(boolean display_scanner) {
+            this.display_scanner = display_scanner;
+        }
+
+        @SerializedName("capture")
+        @Expose
+        boolean display_scanner;
+        @SerializedName("qr_scanner_list")
+        @Expose
+        private List<Scanner_List> Scanner_list;
+
+        public boolean getCapture_bbid() {
+            return capture_bbid;
+        }
+
+        public boolean getCapture_serial_no() {
+            return capture_serial_no;
+        }
+
+        public boolean getCapture_imei() {
+            return capture_imei;
+        }
+
+        public boolean isCapture_bbid() {
+            return capture_bbid;
+        }
+
+        public void setCapture_bbid(boolean capture_bbid) {
+            this.capture_bbid = capture_bbid;
+        }
+
+        public boolean isCapture_serial_no() {
+            return capture_serial_no;
+        }
+
+        public void setCapture_serial_no(boolean capture_serial_no) {
+            this.capture_serial_no = capture_serial_no;
+        }
+
+        public boolean isCapture_imei() {
+            return capture_imei;
+        }
+
+        public void setCapture_imei(boolean capture_imei) {
+            this.capture_imei = capture_imei;
+        }
+
+
+
+        public List<Scanner_List> getScanner_list() {
+            return Scanner_list;
+        }
+
+        public void setScanner_list(List<Scanner_List> scanner_list) {
+            Scanner_list = scanner_list;
+        }
+
 
         public String getBarcode_value() {
             return barcode_value;
@@ -162,10 +235,6 @@ public class GRNResponse {
         public void setBarcode_value(String barcode_value) {
             this.barcode_value = barcode_value;
         }
-
-        @SerializedName("Barcodevalue")
-        @Expose
-        String barcode_value;
 
         public int getRecevied_qty() {
             return recevied_qty;

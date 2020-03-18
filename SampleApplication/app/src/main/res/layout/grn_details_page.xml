@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/content"
+        android:visibility="visible"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#000000"
+                android:text="Vendor Name :"
+                android:textSize="15sp"
+                >
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/merchant_name"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#0099cc"
+                android:text="SAFARI INDUSTRIES INDIA LIMITED(1716)"
+                android:textSize="15sp"
+                >
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:id="@+id/po_order_date"
+            android:text="PO order Date :"
+            android:textSize="15sp"
+            android:visibility="gone"
+            >
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="Invoice number"
+            android:textSize="15sp"
+            >
+        </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:id="@+id/invoice_number"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#000000"
+                android:background="@drawable/rectangle"
+                android:hint="Enter an Invoice number"
+                android:paddingLeft="4dp"
+                android:paddingStart="4dp"
+                android:textSize="15sp"
+                >
+            </EditText>
+
+            <ImageView
+                android:id="@+id/iv_delOcr"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="19dp"
+                android:src="@drawable/invoice"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/invoice_amount_txt"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text="Invoice amount"
+            android:textSize="15sp"
+            >
+        </TextView>
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="35dp"
+            android:id="@+id/invoice_amount"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:inputType="number"
+            android:background="@drawable/rectangle"
+            android:hint="Enter an Invoice amount"
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
+            android:textSize="15sp"
+            >
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/invoice_tax"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text="Invoice tax"
+            android:textSize="15sp"
+            >
+        </TextView>
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="35dp"
+            android:id="@+id/invoice_tax_amt"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:inputType="number"
+            android:background="@drawable/rectangle"
+            android:hint="Enter an Invoice tax"
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
+            android:textSize="15sp"
+            >
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/invoice_date_txt"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text="Invoice date"
+            android:textSize="15sp"
+            >
+        </TextView>
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:id="@+id/invoice_date"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#FFFFFF"
+            android:text="Choose date"
+            android:textAllCaps="false"
+            android:background="@drawable/button_round"
+            android:paddingRight="4dp"
+            android:paddingEnd="4dp"
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
+            android:textSize="15sp"
+            >
+        </Button>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:text="Invoice photo"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            >
+        </TextView>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/invoice_photo_icon"
+            android:background="@drawable/ic_photo_camera_black_24dp"
+            >
+        </ImageView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:text="GSTN :"
+                android:textSize="15sp"
+                >
+            </TextView>
+            <EditText
+
+                android:id="@+id/GSTN_number"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#000000"
+                android:background="@drawable/rectangle"
+                android:hint="Supplier GSTN"
+                android:paddingLeft="4dp"
+                android:paddingStart="4dp"
+                android:textSize="15sp"
+                >
+            </EditText>
+
+            <ImageView
+                android:id="@+id/verify_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/verified"
+                android:visibility="gone"
+
+                ></ImageView>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/grn_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp" />
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:id="@+id/submit"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="#FFFFFF"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:background="@drawable/button_round"
+                android:paddingRight="4dp"
+                android:paddingEnd="4dp"
+                android:paddingLeft="4dp"
+                android:paddingStart="4dp"
+                android:textSize="15sp"
+                >
+            </Button>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

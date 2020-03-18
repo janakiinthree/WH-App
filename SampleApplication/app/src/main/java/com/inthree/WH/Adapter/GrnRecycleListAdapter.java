@@ -46,14 +46,19 @@ public class GrnRecycleListAdapter extends RecyclerView.Adapter<GrnRecycleListAd
         holder.ordered_qty.setText((pomdel.getQty() == null) ? "" : pomdel.getQty());
         holder.received_qty.setText(String.valueOf(pomdel.getRecevied_qty()));
         holder.barcodevalue.setText((pomdel.getBarcode_value() == null) ? "" : pomdel.getBarcode_value());
+        if(!pomdel.isDisplay_scanner()){
+               holder.qrcode_recevied_cqty.setVisibility(View.GONE);
+           }
 
         holder.qrcode_recevied_cqty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(mScannerClick!=null){
-                    mScannerClick.onClick(pomdel.getProduct_id());
+                    boolean display_bbid = pomdel.getCapture_bbid();
+                    boolean display_imei_no =pomdel.getCapture_imei();
+                    boolean display_serial_no =pomdel.getCapture_serial_no();
+                    mScannerClick.onClick(pomdel.getProduct_id(),display_bbid,display_imei_no,display_serial_no);
                 }
-
             }
         });
     }
@@ -90,6 +95,6 @@ public class GrnRecycleListAdapter extends RecyclerView.Adapter<GrnRecycleListAd
     }
 
     public interface onScannerClick{
-        void onClick(String product_id);
+        void onClick(String product_id,boolean display_bbid,boolean display_imei_no,boolean display_serial_no);
     }
 }
