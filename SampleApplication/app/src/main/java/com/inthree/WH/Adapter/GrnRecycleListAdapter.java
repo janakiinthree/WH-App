@@ -1,8 +1,13 @@
 package com.inthree.WH.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.StrictMode;
+import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +17,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.inthree.WH.GrnDetailsActivity;
 import com.inthree.WH.R;
 import com.inthree.WH.model.GRNResponse;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class GrnRecycleListAdapter extends RecyclerView.Adapter<GrnRecycleListAdapter.ViewHolder> {
 
@@ -51,6 +64,13 @@ public class GrnRecycleListAdapter extends RecyclerView.Adapter<GrnRecycleListAd
         holder.ordered_qty.setText((pomdel.getQty() == null) ? "" : pomdel.getQty());
         holder.received_qty.setText(String.valueOf(pomdel.getRecevied_qty()));
         holder.req_qty.setText(String.valueOf(pomdel.getReq_qty()));
+        if(pomdel.getImage_url()!=null){
+            Bitmap im= GrnDetailsActivity.getBitmapFromURL(pomdel.getImage_url().toString());
+            if(im!=null){
+                holder.product_image.setImageBitmap(im);
+            }
+
+        }
         //holder.barcodevalue.setText((pomdel.getBarcode_value() == null) ? "" : pomdel.getBarcode_value());
          holder.received_qty.setEnabled(false);
         //holder.received_qty.isFocusable = true;
@@ -116,7 +136,7 @@ public class GrnRecycleListAdapter extends RecyclerView.Adapter<GrnRecycleListAd
 
         public TextView product_name, item_code, ordered_qty,barcodevalue,req_qty;
         EditText received_qty;
-        public ImageView qrcode_recevied_cqty;
+        public ImageView qrcode_recevied_cqty,product_image;
 
         public ViewHolder(View view) {
             super(view);
@@ -126,6 +146,7 @@ public class GrnRecycleListAdapter extends RecyclerView.Adapter<GrnRecycleListAd
             received_qty = (EditText) view.findViewById(R.id.entered_qty);
             req_qty = (TextView) view.findViewById(R.id.req_qty);
             qrcode_recevied_cqty = (ImageView) view.findViewById(R.id.qrcode_recevied_cqty);
+            product_image =(ImageView)view.findViewById(R.id.product_image);
             ///barcodevalue = (TextView)view.findViewById(R.id.barcodevalue);
 
         }

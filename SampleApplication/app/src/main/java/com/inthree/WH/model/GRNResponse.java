@@ -252,6 +252,18 @@ public class GRNResponse {
             this.req_qty = req_qty;
         }
 
+        public String getImage_url() {
+            return image_url;
+        }
+
+        public void setImage_url(String image_url) {
+            this.image_url = image_url;
+        }
+
+        @SerializedName("image_details")
+        @Expose
+        String image_url;
+
         @SerializedName("req_qty")
         @Expose
         int req_qty;

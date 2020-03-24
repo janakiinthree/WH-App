@@ -10,14 +10,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -57,6 +60,9 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -82,6 +88,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class GrnDetailsActivity extends AppCompatActivity {
 
@@ -260,6 +267,19 @@ public class GrnDetailsActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public static Bitmap getBitmapFromURL(String src) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(src);
+            Bitmap bmp = BitmapFactory.decodeStream((InputStream)url.getContent());
+            return bmp;
+        } catch (IOException e) {
+            Log.e(TAG, e.getMessage());
+            return null;
+        }
     }
 
     private boolean compare_to(String fromstr, String tostr, String type) {

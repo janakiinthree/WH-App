@@ -24,7 +24,7 @@
             android:paddingRight="10dp">
 
             <ImageView
-                android:id="@+id/shipmentTypeImageView"
+                android:id="@+id/product_image"
                 android:layout_width="55dp"
                 android:layout_height="65dp"
                 android:src="@drawable/invoice" />
