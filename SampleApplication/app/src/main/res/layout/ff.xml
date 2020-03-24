@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12sp"
+        android:layout_marginTop="12sp"
+        android:background="@color/colorPrimary"
+        android:layout_marginRight="12sp"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/cancelationChargeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12sp">
+
+                    <TextView
+                        android:id="@+id/totalOrderValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12sp"
+                        android:gravity="left"
+                        android:text="total_order_value"
+                        android:textColor="@color/grey_d2"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/orderTotalAmt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="12sp"
+                        android:gravity="right"
+                        android:textColor="@color/grey_d8"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:id="@+id/cancellationChargeMsg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12sp"
+                        android:gravity="left"
+                        android:text="cancellation_charge"
+                        android:textColor="@color/grey_d0"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/cancellationChargeAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="12sp"
+                        android:gravity="right"
+                        android:textColor="@color/grey_d5"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="4dp"
+                    android:background="@color/grey_f2" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/refundLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cancelationChargeLayout"
+                android:layout_marginTop="6sp"
+                android:layout_marginBottom="8sp">
+
+                <TextView
+                    android:id="@+id/txtRefundAmountChargeMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12sp"
+                    android:gravity="left"
+                    android:textColor="@color/grey_c8"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/refundAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12sp"
+                    android:gravity="right"
+                    android:textColor="@color/grey_c8"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/view"
+                android:layout_alignParentLeft="true"
+                android:background="@color/grey_f2"
+                android:maxHeight="70dp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/view"
+                android:layout_alignParentRight="true"
+                android:background="@color/grey_f2" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/refundLayout"
+                android:background="@color/grey_f2" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnContinueShopping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="continue_shopping" />
+</RelativeLayout>

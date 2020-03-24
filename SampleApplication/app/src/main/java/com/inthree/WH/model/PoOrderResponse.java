@@ -95,6 +95,31 @@ public class PoOrderResponse {
         @Expose
         String ordered_qty;
 
+        public String getValid_upto() {
+            return valid_upto;
+        }
+
+        public void setValid_upto(String valid_upto) {
+
+            this.valid_upto = valid_upto;
+        }
+
+        @SerializedName("valid_upto")
+        @Expose
+        String valid_upto;
+
+       public String getRequired_qty_for_order() {
+            return required_qty_for_order;
+        }
+
+        public void setRequired_qty_for_order(String required_qty_for_order) {
+            this.required_qty_for_order = required_qty_for_order;
+        }
+
+        @SerializedName("req_qty")
+        @Expose
+        String required_qty_for_order;
+
         public String getOrder_number() {
             return order_number;
         }

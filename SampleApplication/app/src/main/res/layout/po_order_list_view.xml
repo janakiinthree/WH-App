@@ -5,35 +5,49 @@
     android:layout_width="match_parent"
 
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center" >
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--       >-->
-<!--        <com.miguelcatalan.materialsearchview.MaterialSearchView-->
-<!--            android:id="@+id/search_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:visibility="visible" />-->
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
 
-
-<!--            <androidx.appcompat.widget.Toolbar-->
-<!--                android:id="@+id/toolbar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="?attr/actionBarSize"-->
-<!--                android:background="?attr/colorPrimary"-->
-<!--                 />-->
+    </RelativeLayout>
 
 
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
-    <EditText
-        android:id="@+id/input_search"
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:hint="search"
-        android:paddingBottom="20dp" />
+  >
+
+        <EditText
+            android:id="@+id/input_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="30dp"
+            android:hint="search"
+            android:paddingBottom="20dp" />
+
+        <ImageView
+            android:id="@+id/clear_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="26dp"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/ic_clear_black_24dp" />
+    </RelativeLayout>
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

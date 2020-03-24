@@ -1,10 +1,16 @@
 package com.inthree.WH;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +30,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.inthree.WH.API.Api.Login_user_id;
+
 
 public class POrderListActivity extends AppCompatActivity {
 
@@ -36,22 +44,33 @@ public class POrderListActivity extends AppCompatActivity {
     @BindView(R.id.input_search)
     EditText inputSearch;
 
+    @BindView(R.id.clear_search)
+    ImageView clear_search;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.po_order_list_view);
         ButterKnife.bind(this);
         init_component();
-        load_po_list();
 
     }
 
     private void init_component() {
         // Initalize the components in View
         recyclerView = findViewById(R.id.recyclerView);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewAdapter = new PoOrderRecycleListAdapter();
         recyclerView.setAdapter(recyclerViewAdapter);
+        clear_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inputSearch.setText("");
+                clear_search.setVisibility(View.GONE);
+            }
+        });
         inputSearch.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
@@ -65,11 +84,15 @@ public class POrderListActivity extends AppCompatActivity {
 
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-
+                clear_search.setVisibility(View.VISIBLE);
                 processQuery(inputSearch.getText().toString());
 
             }
         });
+        findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+        load_po_list();
+
+
 
     }
 
@@ -84,6 +107,8 @@ public class POrderListActivity extends AppCompatActivity {
         Intent i = getIntent();
         String user_id = i.getSerializableExtra("login_user_id").toString();
         request.setUser_id(user_id);
+
+
         Call<PoOrderResponse> call = api.get_po_orderdetails(request);
 
         // Read the response from API and assign the details into PoOrder Model
@@ -96,6 +121,8 @@ public class POrderListActivity extends AppCompatActivity {
                     List<PoOrderResponse.PoOrderModel> orderResponse = response.body().getOrdermodel();
                     order_list_full = orderResponse;
                     recyclerViewAdapter.setData(orderResponse);
+                    findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+
                 } else {
                     Toast.makeText(getApplicationContext(), po_api_msg, Toast.LENGTH_SHORT).show();
                 }
@@ -121,5 +148,24 @@ public class POrderListActivity extends AppCompatActivity {
         }
         recyclerViewAdapter.setData(order_list_filter);
     }
+
+    @Override
+    public void onBackPressed() {
+
+        new AlertDialog.Builder( this )
+                .setTitle("Exit")
+                .setMessage("Are you sure you want to exit?")
+                .setIcon( android.R.drawable.ic_dialog_alert )
+                //.show()
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        System.exit(0);
+                    }
+                }).setNegativeButton("No", null).show();
+
+
+   }
 
 }

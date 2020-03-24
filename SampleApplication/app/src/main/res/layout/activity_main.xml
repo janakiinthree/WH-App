@@ -56,7 +56,17 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/login_error"
+                android:gravity="center"
+                android:visibility="gone"
+                android:padding="5dp"
+                android:textColor="@color/cb_errorRed"
+                android:text="Invalid Username or Password"
+                android:layout_height="match_parent">
 
+            </TextView>
             <EditText
                 android:id="@+id/edt_username"
                 android:layout_width="match_parent"

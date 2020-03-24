@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffffff">
+
+    <ImageView
+        android:id="@+id/a"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#B4EEB3"
+        android:gravity="center"
+        android:scaleType="fitCenter"
+        android:src="@drawable/success_icon" />
+
+
+    <TextView
+        style="@style/normaltext"
+        android:id="@+id/state"
+        android:layout_below="@+id/a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00E7DFDF"
+        android:gravity="center_horizontal"
+        android:text="Success"
+        android:textColor="#070606"
+        android:textSize="24sp"
+        android:textStyle="bold"></TextView>
+
+    <TextView
+        style="@style/normaltext"
+        android:id="@+id/mesg"
+        android:layout_below="@+id/state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00E7DFDF"
+        android:gravity="center_horizontal"
+        android:text="GRN created Successfully!" >
+
+
+    </TextView>
+    <TextView
+        style="@style/normaltext"
+        android:id="@+id/Po_text"
+
+        android:layout_below="@+id/mesg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00E7DFDF"
+        android:gravity="center_horizontal"
+        android:text="GRN 5435435"/>
+    <TextView
+        style="@style/normaltext"
+        android:id="@+id/text"
+        android:layout_below="@+id/Po_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00E7DFDF"
+        android:gravity="center_horizontal"
+        android:text="GRN 5435435"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/text"
+        android:layout_height="30dp"
+        android:text="OK"
+        android:backgroundTint="#41E23E"
+        android:id="@+id/btn_dialog"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_round"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffffff" />
+
+</RelativeLayout>
+

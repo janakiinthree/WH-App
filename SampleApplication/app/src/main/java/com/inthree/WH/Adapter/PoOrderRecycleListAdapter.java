@@ -79,6 +79,8 @@ public class PoOrderRecycleListAdapter extends RecyclerView.Adapter<PoOrderRecyc
         holder.vendor_name.setText((pomdel.getSupplier_name() == null) ? "" : pomdel.getSupplier_name());
         holder.order_amount.setText((pomdel.getOrder_amount() == null) ? "" : "₹  " + pomdel.getOrder_amount());
         holder.order_date.setText((pomdel.getOrder_created_date() == null) ? "" : pomdel.getOrder_created_date());
+        holder.expriy_date.setText((pomdel.getValid_upto() == null) ? "" : pomdel.getValid_upto());
+        holder.required_qty_for_order.setText((pomdel.getRequired_qty_for_order() == null) ? "" : pomdel.getRequired_qty_for_order());
     }
 
     @Override
@@ -99,7 +101,7 @@ public class PoOrderRecycleListAdapter extends RecyclerView.Adapter<PoOrderRecyc
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView order_number, vendor_name, order_amount, order_date;
+        public TextView order_number, vendor_name, order_amount, order_date,expriy_date,required_qty_for_order;
         public CardView cardView;
 
         public ViewHolder(View view) {
@@ -109,6 +111,8 @@ public class PoOrderRecycleListAdapter extends RecyclerView.Adapter<PoOrderRecyc
             vendor_name = (TextView) view.findViewById(R.id.Vendor_name);
             order_amount = (TextView) view.findViewById(R.id.order_amount);
             order_date = (TextView) view.findViewById(R.id.order_date);
+            expriy_date = (TextView) view.findViewById(R.id.expriy_date);
+            required_qty_for_order=(TextView)view.findViewById(R.id.required_qty_for_order);
             cardView = view.findViewById(R.id.cardView);
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override

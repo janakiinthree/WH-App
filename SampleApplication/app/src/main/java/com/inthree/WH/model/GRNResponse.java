@@ -40,23 +40,86 @@ public class GRNResponse {
     }
 
     public static class GRN_details {
+
+        public int getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(int user_id) {
+            this.user_id = user_id;
+        }
+
+        public String getEway() {
+            return eway;
+        }
+
+        public void setEway(String eway) {
+            this.eway = eway;
+        }
+
+        public String getPo_id() {
+            return po_id;
+        }
+
+        public void setPo_id(String po_id) {
+            this.po_id = po_id;
+        }
+
+        @SerializedName("user_id")
+        @Expose
+        int user_id;
+        @SerializedName("eway")
+        @Expose
+        String eway;
+        @SerializedName("purchase_order_id")
+        @Expose
+        String po_id;
         @SerializedName("inv_date")
         @Expose
         String inv_date;
         @SerializedName("inv_amount")
         @Expose
         String invoice_amount;
+
+        public String getEnterted_invoice_amount() {
+            return enterted_invoice_amount;
+        }
+
+        public void setEnterted_invoice_amount(String enterted_invoice_amount) {
+            this.enterted_invoice_amount = enterted_invoice_amount;
+        }
+
+        @SerializedName("entered_inv_amount")
+        @Expose
+        String enterted_invoice_amount;
         @SerializedName("vendor_gstinno")
         @Expose
         String vendor_gstinno;
         @SerializedName("inv_tax")
         @Expose
         String inv_tax;
+
+
+
+        @SerializedName("enterted_inv_tax")
+        @Expose
+        String enterted_inv_tax;
+
+        public String getEnterted_inv_tax() {
+            return enterted_inv_tax;
+        }
+
+        public void setEnterted_inv_tax(String enterted_inv_tax) {
+            this.enterted_inv_tax = enterted_inv_tax;
+        }
+
         @SerializedName("supplier_name")
         @Expose
         String supplier_name;
         @SerializedName("invoice_number")
         @Expose
+
+
         String invoice_number;
         @SerializedName("products")
         @Expose
@@ -180,6 +243,18 @@ public class GRNResponse {
         @SerializedName("qr_scanner_list")
         @Expose
         private List<Scanner_List> Scanner_list;
+
+        public int getReq_qty() {
+            return req_qty;
+        }
+
+        public void setReq_qty(int req_qty) {
+            this.req_qty = req_qty;
+        }
+
+        @SerializedName("req_qty")
+        @Expose
+        int req_qty;
 
         public boolean getCapture_bbid() {
             return capture_bbid;
